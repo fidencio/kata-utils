@@ -1,0 +1,11 @@
+# Single service with Kata Containers.
+# Run: sudo nerdctl compose up -d
+# Logs: sudo nerdctl compose logs -f
+# Stop: sudo nerdctl compose down
+
+services:
+  web:
+    image: docker.io/library/nginx:alpine
+    ports:
+      - "8080:80"
+    runtime: io.containerd.kata.v2

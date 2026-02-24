@@ -1,0 +1,14 @@
+# One service with Kata, one with default (runc).
+# Run: sudo nerdctl compose up -d
+# Logs: sudo nerdctl compose logs -f web  # or app
+# Stop: sudo nerdctl compose down
+
+services:
+  web:
+    image: docker.io/library/nginx:alpine
+    ports:
+      - "8080:80"
+    runtime: io.containerd.kata.v2
+  app:
+    image: docker.io/library/alpine
+    command: ["sh", "-c", "echo 'Hello from default runtime' && sleep 3600"]

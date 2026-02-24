@@ -1,0 +1,15 @@
+# All services run with Kata (runtime set per service).
+# Run: sudo nerdctl compose up -d
+# Logs: sudo nerdctl compose logs -f
+# Stop: sudo nerdctl compose down
+
+services:
+  web:
+    image: docker.io/library/nginx:alpine
+    ports:
+      - "8080:80"
+    runtime: io.containerd.kata.v2
+  app:
+    image: docker.io/library/alpine
+    command: ["sh", "-c", "echo 'Hello from Kata' && sleep 3600"]
+    runtime: io.containerd.kata.v2
